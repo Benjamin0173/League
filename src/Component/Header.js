@@ -18,6 +18,9 @@ function Header() {
         <StyledLink to="/client" $isFullLink>
           client
         </StyledLink>
+        <StyledLink to="/ChampMastery" $isFullLink>
+          Champ Mastery
+        </StyledLink>
       </div>
     </NavContainer>
   )

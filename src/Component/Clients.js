@@ -7,6 +7,7 @@ function Client() {
   const [gameList, setgameList] = useState([])
 
   function getPlayerGames(event) {
+    //console.log(searchText)
     axios
       .get('http://localhost:4000/past5Games', {
         params: { username: { searchText } },
@@ -32,9 +33,8 @@ function Client() {
       </button>
       {gameList.length !== 0 ? (
         <>
-          <p>We have data!</p>
           {gameList.map((gameData, index) => (
-            <>
+            <span id={index}>
               <h2>Game {index + 1}</h2>
               <div>
                 {gameData.info.participants.map((data, participantIndex) => (
@@ -44,7 +44,7 @@ function Client() {
                   </p>
                 ))}
               </div>
-            </>
+            </span>
           ))}
         </>
       ) : (

@@ -8,6 +8,7 @@ import Header from './Component/Header'
 import Connection from './Component/Connection'
 import Information from './Component/Information'
 import Client from './Component/Clients'
+import ChampionMastery from './Component/ChampMastery'
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
@@ -21,6 +22,7 @@ root.render(
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/Information" element={<Information />} />
         <Route path="/client" element={<Client />} />
+        <Route path="/ChampMastery" element={<ChampionMastery />} />
       </Routes>
     </Router>
   </React.StrictMode>
