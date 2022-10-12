@@ -1,0 +1,48 @@
+import '../App.css'
+import React, { useState } from 'react'
+import axios from 'axios'
+
+export default function DetailGame(data) {
+
+    return(
+        {data.map((gameData, index) => (
+            <span id={index}>
+              <h2>Match : {gameData.info.gameMode}</h2>
+              <p>Timer : {gameData.info.gameDuration / 60}</p>
+              <div>
+                {gameData.info.participants.map((data, participantIndex) => (
+                  <div>
+                    {data.summonerName === searchText ? (
+                      <p>
+                        <p>Champion : {data.championName}</p>
+                        <p>Champ level : {data.champLevel}</p>
+                        <p>Champion ID: {data.championId}</p>
+                        <p>
+                          KDA: {data.kills} / {data.deaths} / {data.assists}
+                        </p>{' '}
+                        <p>
+                          KDA Moyen: {(data.kills + data.assists) / data.deaths}
+                        </p>
+                        <p>
+                          CS :
+                          {data.totalMinionsKilled + data.neutralMinionsKilled}
+                        </p>
+                        <p>
+                          (
+                          {(data.totalMinionsKilled +
+                            data.neutralMinionsKilled) /
+                            (gameData.info.gameDuration / 60)}
+                          )
+                        </p>
+                        <p>Win : {data.win.toString()}</p>
+                      </p>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </span>
+          ))}
+    )
+}

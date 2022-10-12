@@ -46,7 +46,7 @@ const Connection = (props) => {
       message = 'Mots de passe Correct'
       console.log(dataMAIL)
       setTimeout(function () {
-        let path = `/dashboard`
+        let path = `/client`
         navigate(path)
       }, 2000)
     } else {
