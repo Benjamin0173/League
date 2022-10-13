@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 //import App from './App'
 import reportWebVitals from './reportWebVitals'
-import Dashboard from './Component/Dashboard'
 import Header from './Component/Header'
 import Connection from './Component/Connection'
 import Information from './Component/Information'
@@ -19,7 +18,6 @@ root.render(
       <Header />
       <Routes>
         <Route path="/" element={<Connection />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/Information" element={<Information game />} />
         <Route path="/client" element={<Client />} />
         <Route path="/ChampMastery" element={<ChampionMastery />} />

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { TextField, Button, InputAdornment, IconButton } from '@mui/material'
+import useInput from '../hooks/use-Inputs'
 
 // eslint-disable-next-line no-unused-vars
 let role = ''
@@ -26,7 +27,43 @@ const Connection = (props) => {
     },
   })
 
+  const {
+    value: enteredName,
+    isValid: enteredNameIsValid,
+    hasError: nameInputHasError,
+    valueChangeHandler: nameChangedHandler,
+    inputBlurHandler: nameBlurHandler,
+    reset: resetNameInput,
+  } = useInput((value) => value.trim() !== '')
+
+  const {
+    value: enteredEmail,
+    isValid: enteredEmailIsValid,
+    hasError: enteredEmailIsInvalid,
+    valueChangeHandler: emailInputChangeHandler,
+    inputBlurHandler: emailInputBlurHandler,
+    reset: resetEmailInput,
+  } = useInput((value) => value.trim() !== '')
+
+  const formSubmissionHandler = (event) => {
+    console.log(enteredName)
+
+    // nameInputRef.current.value = ''; => NOT IDEAL, DON'T MANIPULATE THE DOM
+
+    //setEnteredEmail('');
+    //setEnteredEmailTouched(false);
+  }
+
   const onSubmit = async (data) => {
+    data.preventDefault()
+
+    if (!enteredNameIsValid) {
+      return
+    }
+
+    resetNameInput()
+    resetEmailInput()
+
     //TRI DE DATA
     data = JSON.stringify(data)
     data = data.toString().split('"')
@@ -35,11 +72,11 @@ const Connection = (props) => {
     console.log(dataMAIL, dataMDP)
     //console.log(Fileds)
 
-    if (
-      (Email === undefined && Mots_de_Passe === undefined) ||
-      (Email === null && Mots_de_Passe === null) ||
-      (Email === '' && Mots_de_Passe === '')
-    ) {
+    const emailInputClasses = enteredEmailIsInvalid
+      ? 'form-control invalid'
+      : 'form-control'
+
+    if (enteredNameIsValid && enteredEmailIsValid) {
       message = 'Email non reconnu'
     }
     if (dataMAIL === '123456benjamin.rey@gmail.com') {
@@ -67,6 +104,9 @@ const Connection = (props) => {
             id="email"
             variant="outlined"
             placeholder="Email"
+            onChange={emailInputChangeHandler}
+            onBlur={emailInputBlurHandler}
+            value={enteredEmail}
             {...register('EMail', {
               pattern: /^\S+@\S+$/i,
               required: true,
@@ -79,6 +119,9 @@ const Connection = (props) => {
             id="MDP"
             variant="outlined"
             placeholder="Mots de Passe"
+            onChange={nameChangedHandler}
+            onBlur={nameBlurHandler}
+            value={enteredName}
             type={showPassword ? 'text' : 'password'} // <-- This is where the magic happens
             //onChange={someChangeHandler}
             InputProps={{

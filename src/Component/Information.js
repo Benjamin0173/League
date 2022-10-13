@@ -7,6 +7,7 @@ const Information = ({ event }) => {
   const SavedPseudo = JSON.parse(localStorage.getItem('Pseudo'))
 
   const [gameList, setgameList] = useState(null)
+
   async function getgame() {
     await axios
       .get('http://localhost:4000/GameId', {
@@ -49,7 +50,7 @@ const Information = ({ event }) => {
                         Champion ID: {data.championId}
                       </p>
                     </div>
-                    <div className="Information_positionInfoChamp">
+                    <div className="Information_positionKDA">
                       <p className="p_Information_Stats">
                         KDA: {data.kills} / {data.deaths} / {data.assists}
                       </p>
@@ -68,7 +69,7 @@ const Information = ({ event }) => {
                         )
                       </p>
                     </div>
-                    <div className="Information_positionInfoChamp">
+                    <div className="Information_positionMisc">
                       <p className="p_Information_Stats">
                         Win : {data.win.toString()}
                       </p>
@@ -78,20 +79,20 @@ const Information = ({ event }) => {
                       </p>
 
                       <p className="p_Information_Stats">
-                        goldEarned : {data.goldEarned}
+                        Gold Obtenue : {data.goldEarned}
                       </p>
                       <p className="p_Information_Stats">
-                        goldSpent : {data.goldSpent}
+                        Gold Depenser : {data.goldSpent}
                       </p>
 
                       <p className="p_Information_Stats">
-                        largestKillingSpree : {data.largestKillingSpree}
+                        Plus Grand Meutre en séries : {data.largestKillingSpree}
                       </p>
                       <p className="p_Information_Stats">
-                        largestMultiKill : {data.largestMultiKill}
+                        Plus Grand MultiKill : {data.largestMultiKill}
                       </p>
                       <p className="p_Information_Stats">
-                        longestTimeSpentLiving :{' '}
+                        Le temps rester en vis le plus long :
                         {data.longestTimeSpentLiving / 60}
                       </p>
 
@@ -108,74 +109,76 @@ const Information = ({ event }) => {
                         R utiliser : {data.spell4Casts}
                       </p>
                       <p className="p_Information_Stats">
-                        teamEarlySurrendered :{' '}
+                        Team Abandon avant 15min :{' '}
                         {data.teamEarlySurrendered.toString()}
                       </p>
                     </div>
-                    <div className="Information_positionInfoChamp">
+                    <div className="Information_positionVision">
                       <p className="p_Information_Stats">
-                        visionScore : {data.visionScore}
+                        Score de vision : {data.visionScore}
                       </p>
                       <p className="p_Information_Stats">
                         visionWardsBoughtInGame : {data.visionWardsBoughtInGame}
                       </p>
                       <p className="p_Information_Stats">
-                        wardsKilled : {data.wardsKilled}
+                        Balise de vision Tuer : {data.wardsKilled}
                       </p>
                       <p className="p_Information_Stats">
-                        wardsPlaced : {data.wardsPlaced}
+                        Balise de vision Placer : {data.wardsPlaced}
                       </p>
                       <p className="p_Information_Stats">
                         sightWardsBoughtInGame : {data.sightWardsBoughtInGame}
                       </p>
                     </div>
-                    <div className="Information_positionInfoChamp">
+                    <div className="Information_positionObjectif">
                       <p className="p_Information_Stats">
-                        damageDealtToBuildings : {data.damageDealtToBuildings}
+                        Dégats infliger au batiments :{' '}
+                        {data.damageDealtToBuildings}
                       </p>
                       <p className="p_Information_Stats">
-                        damageDealtToObjectives : {data.damageDealtToObjectives}
+                        Dégats infliger au Objectif :{' '}
+                        {data.damageDealtToObjectives}
                       </p>
                       <p className="p_Information_Stats">
-                        damageDealtToTurrets : {data.damageDealtToTurrets}
+                        Dégats infliger au Tourrel : {data.damageDealtToTurrets}
                       </p>
                       <p className="p_Information_Stats">
-                        turretsLost : {data.turretsLost}
+                        Tourrel Perdu : {data.turretsLost}
                       </p>
                       <p className="p_Information_Stats">
-                        objectivesStolen : {data.objectivesStolen}
+                        Objectif Volée : {data.objectivesStolen}
                       </p>
                       <p className="p_Information_Stats">
-                        objectivesStolenAssists : {data.objectivesStolenAssists}
+                        Assist Objectif Volée : {data.objectivesStolenAssists}
                       </p>
                     </div>
-                    <div className="Information_positionInfoChamp">
+                    <div className="Information_positionDamage">
                       <p className="p_Information_Stats">
                         SelfMitiged Damage : {data.damageSelfMitigated}
                       </p>
                       <p className="p_Information_Stats">
-                        largestCriticalStrike : {data.largestCriticalStrike}
+                        Plus Gros Crit : {data.largestCriticalStrike}
                       </p>
                       <p className="p_Information_Stats">
-                        magicDamageDealt : {data.magicDamageDealt}
+                        Dégat Magic Infligée : {data.magicDamageDealt}
                       </p>
                       <p className="p_Information_Stats">
-                        magicDamageDealtToChampions :{' '}
+                        Dégat Magic Infligée au Champion :{' '}
                         {data.magicDamageDealtToChampions}
                       </p>
                       <p className="p_Information_Stats">
-                        magicDamageTaken : {data.magicDamageTaken}
+                        Dégat Magic Recus : {data.magicDamageTaken}
                       </p>
 
                       <p className="p_Information_Stats">
-                        physicalDamageDealt : {data.physicalDamageDealt}
+                        Dégat Physique Infliger : {data.physicalDamageDealt}
                       </p>
                       <p className="p_Information_Stats">
-                        physicalDamageDealtToChampions :{' '}
+                        Dégat Physique Infliger au Champion :{' '}
                         {data.physicalDamageDealtToChampions}
                       </p>
                       <p className="p_Information_Stats">
-                        physicalDamageTaken : {data.physicalDamageTaken}
+                        Dégat Physique Recus : {data.physicalDamageTaken}
                       </p>
                       <p className="p_Information_Stats">
                         timeCCingOthers : {data.timeCCingOthers}

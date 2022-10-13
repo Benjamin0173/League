@@ -1,7 +1,6 @@
 import '../App.css'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import DetailGame from './DetailGame'
 import { TextField, Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 

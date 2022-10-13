@@ -71,21 +71,37 @@ margin-bottom: 5%;
 
 .p_Information_Champion{
   margin: 0;
+  margin-bottom: 2px;
   text-align: left;
   font-size: 15px;
   width: auto;
 }
 .p_Information_Stats{
   margin: 0;
+  margin-bottom: 9px;
   text-align: left;
   font-size: 15px;
   width: auto;
+  margin-top: 2px;
 }
 
 .Information_positionInfoChamp{
-  margin-left: 5%;
-  margin-right: 5%;
-  width: 80px;
+  width: 15%;
+}
+.Information_positionKDA{
+  width: 10%;
+}
+.Information_positionMisc{
+  width: 20%;
+}
+.Information_positionVision{
+  width: 15%;
+}
+.Information_positionObjectif{
+  width: 17%;
+}
+.Information_positionDamage{
+  width: 21%;
 }
 
 .Information_positionbutton{   
