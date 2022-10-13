@@ -20,7 +20,7 @@ root.render(
       <Routes>
         <Route path="/" element={<Connection />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/Information" element={<Information />} />
+        <Route path="/Information" element={<Information game />} />
         <Route path="/client" element={<Client />} />
         <Route path="/ChampMastery" element={<ChampionMastery />} />
       </Routes>

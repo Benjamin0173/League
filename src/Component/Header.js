@@ -15,12 +15,8 @@ function Header() {
         <StyledLink to="/" $isFullLink>
           Log In
         </StyledLink>
-        <StyledLink to="/client" $isFullLink>
-          client
-        </StyledLink>
-        <StyledLink to="/ChampMastery" $isFullLink>
-          Champ Mastery
-        </StyledLink>
+        <StyledLink to="/client">client</StyledLink>
+        <StyledLink to="/ChampMastery">Champ Mastery</StyledLink>
       </div>
     </NavContainer>
   )

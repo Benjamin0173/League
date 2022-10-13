@@ -1,14 +1,39 @@
 import '../App.css'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import DetailGame from './DetailGame'
 import { TextField, Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 function Client() {
   const [searchText, setSearchText] = useState('')
   const [gameList, setgameList] = useState([])
 
+  const SavedPseudo = localStorage.getItem('Pseudo')
+
+  const handleSavedPseudo = (eventSavedPseudo) => {
+    updatePseudo(eventSavedPseudo.target.value)
+  }
+  const [Pseudo, updatePseudo] = useState(
+    SavedPseudo ? JSON.parse(SavedPseudo) : []
+  )
+  useEffect(() => {
+    localStorage.setItem('Pseudo', JSON.stringify(Pseudo))
+  }, [Pseudo])
+
+  /////////
+
+  let [Game, updateGame] = useState('')
+
+  useEffect(() => {
+    localStorage.setItem('Game', JSON.stringify(Game))
+  }, [Game])
+
+  let navigate = useNavigate()
+
   function getPlayerGames(event) {
+    // updatePseudo(searchText)
+    //console.log(Pseudo)
     //console.log(searchText)
     axios
       .get('http://localhost:4000/past5Games', {
@@ -27,6 +52,19 @@ function Client() {
     gameList.gameData.info.participants === searchText
   )*/
 
+  function getGameDetail(event, index) {
+    console.log('button n °' + index)
+    updateGame((Game = event))
+    console.log(Game)
+    //console.log(Object.keys(event))
+    /*Object.keys(event).map((value) => {
+      console.log(event[value])*/
+    setTimeout(function () {
+      let path = `/Information`
+      navigate(path)
+    }, 0)
+  }
+
   return (
     <div className="App">
       <h2>Welcome to our proxy server app!</h2>
@@ -35,21 +73,27 @@ function Client() {
         onChange={(e) => setSearchText(e.target.value)}
       ></TextField>
       <Button onClick={getPlayerGames} variant="outlined" className="button">
-        Get the past 5 game from your player
+        Get the past 5 game from the player
       </Button>
       {gameList.length !== 0 ? (
         <>
           {gameList.map((gameData, index) => (
-            <button id={index} className="Client_Button">
+            <button
+              key={index}
+              className="Client_Button"
+              onClick={() => {
+                getGameDetail(gameData.metadata.matchId, index)
+              }}
+            >
               <h2>Match : {gameData.info.gameMode}</h2>
 
               <p>Timer : {(gameData.info.gameDuration / 60).toFixed(2)}</p>
               <div>
                 {gameData.info.participants.map((data, participantIndex) => (
-                  <div>
+                  <div key={participantIndex}>
                     {data.summonerName === searchText ? (
                       <div className="Client_positionbutton">
-                        <div className="Client_positionInfoChamp">
+                        <div className="Information_positionInfoChamp">
                           <p className="p_Champion">
                             Champion : {data.championName}
                           </p>
@@ -58,7 +102,7 @@ function Client() {
                             Champion ID: {data.championId}
                           </p>
                         </div>
-                        <div className="Client_positionInfoChamp">
+                        <div className="Information_positionInfoChamp">
                           <p className="p_Stats">
                             KDA: {data.kills} / {data.deaths} / {data.assists}
                           </p>
