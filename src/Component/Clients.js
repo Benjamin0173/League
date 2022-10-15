@@ -21,8 +21,8 @@ function Client() {
   }, [Pseudo])
 
   /////////
-
-  let [Game, updateGame] = useState('')
+  const SavedGame = localStorage.getItem('Game')
+  let [Game, updateGame] = useState(SavedGame ? JSON.parse(SavedGame) : [])
 
   useEffect(() => {
     localStorage.setItem('Game', JSON.stringify(Game))
@@ -31,9 +31,9 @@ function Client() {
   let navigate = useNavigate()
 
   function getPlayerGames(event) {
-    // updatePseudo(searchText)
-    //console.log(Pseudo)
-    //console.log(searchText)
+    updatePseudo(searchText)
+    console.log(Pseudo)
+    console.log(searchText)
     axios
       .get('http://localhost:4000/past5Games', {
         params: { username: { searchText } },
@@ -90,7 +90,7 @@ function Client() {
               <div>
                 {gameData.info.participants.map((data, participantIndex) => (
                   <div key={participantIndex}>
-                    {data.summonerName === searchText ? (
+                    {data.summonerName === Pseudo ? (
                       <div className="Client_positionbutton">
                         <div className="Information_positionInfoChamp">
                           <p className="p_Champion">
