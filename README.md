@@ -1,4 +1,4 @@
-##League website
+## League website
 
 Bonjour Voice un site web permettant de récuperer et afficher certain information de vos games sur league of legends<br>
 (les seuls chose visible pour le moment sont les 5 dernieres games du compte rechercher ainsi que les information relatives a ces game)<br>
